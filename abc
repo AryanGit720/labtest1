@@ -1,0 +1,56 @@
+import numpy as np
+import matplotlib.pyplot as mpl
+years = np.array([1,2,3,4,5,6,7,8,9,10])
+lion = np.array([15,16,17,20,19,21,23,24,25,27])
+elep = np.array([50,52,54,53,55,56,57,59,60,62])
+zebra = np.array([100,98,95,97,96,94,95,93,92,90])
+
+def total_pop(li,el,ze):
+    pop_cnt = []
+    cnt=0
+    for l in li:
+        cnt=cnt + l
+    pop_cnt.append(cnt)
+    cnt=0
+    for e in el:
+        cnt=cnt+ e
+    pop_cnt.append(cnt)
+    cnt=0
+    for z in ze:
+        cnt=cnt+ z
+    pop_cnt.append(cnt)
+    cnt=0
+    return pop_cnt
+
+def avg_gro(li,el,ze):
+    total_p = total_pop(lion, elep, zebra)
+    avg = []
+    lion_avg = total_p[0]/10
+    avg.append(lion_avg)
+    elep_avg = total_p[1]/10
+    avg.append(elep_avg)
+    zeb_avg = total_p[2]/10
+    avg.append(zeb_avg)
+    return avg
+
+def high_g(li,el,ze):
+    avg_high = avg_gro(lion, elep, zebra)
+    hi = avg_high[0]
+    for i in avg_high:
+        if i > hi:
+            hi = i
+    return hi
+
+mpl.plot(years,lion, label="lion")
+mpl.plot(years,elep, label="elephant")
+mpl.plot(years,zebra, label="zebra")
+mpl.legend()
+mpl.title("population growth")
+mpl.xlabel("years")
+mpl.ylabel("population")
+mpl.show()
+#b_pop = total_pop(lion, elep, zebra)
+#mpl.bar(year,b_pop)
+print(total_pop(lion, elep, zebra))
+print(avg_gro(lion, elep, zebra))
+print(high_g(lion, elep, zebra))
